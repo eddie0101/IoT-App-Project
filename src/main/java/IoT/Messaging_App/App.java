@@ -8,5 +8,7 @@ public class App
         System.out.println("Hello_3!!");
         System.out.println("Hello2!");
         System.out.println("Hello4!");
+        System.out.println("Salut");
+        System.out.println("Hello4!");
     }
 }
