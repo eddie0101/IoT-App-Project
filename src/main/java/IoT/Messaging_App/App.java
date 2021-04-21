@@ -7,6 +7,6 @@ public class App
         System.out.println("Hello!");
         System.out.println("Hello2!");
         System.out.println("Salut");
-        System.out.println("abcd");
+       
     }
 }
