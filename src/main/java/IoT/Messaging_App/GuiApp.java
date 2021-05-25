@@ -1,3 +1,4 @@
+package IoT.Messaging_App;
 
 import java.awt.EventQueue;
 import java.awt.GridLayout;
@@ -16,6 +17,8 @@ import javax.swing.JTextArea;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import javax.swing.JPasswordField;
+
 
 public class GuiApp {
 
@@ -24,7 +27,7 @@ public class GuiApp {
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
-	private JTextField textField_4;
+	private JPasswordField textField_4;
 	private JTextField textField_5;
 	private JTextField textField_6;
 
@@ -94,14 +97,16 @@ public class GuiApp {
             	//Test username & password
             	if(true) {
             		
-            	try {
-					Publish publish = new Publish();
-					publish.frame.setVisible(true);
-					
-				} catch (Exception e1) {
-					e1.printStackTrace();
-				}
-            }
+	            	try {
+						Publish publish = new Publish();
+						publish.frame.setVisible(true);
+						String host = textField.getText();
+						System.out.println("host: " + host);
+						
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+            	}
             }
 
         });
@@ -120,7 +125,7 @@ public class GuiApp {
 		JLabel lblNewLabel_4 = new JLabel("Password");
 		panel1.add(lblNewLabel_4);
 		
-		textField_4 = new JTextField();
+		textField_4 = new JPasswordField();
 		panel1.add(textField_4);
 		textField_4.setColumns(10);
 		

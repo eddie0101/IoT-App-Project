@@ -1,4 +1,6 @@
 package IoT.Messaging_App;
+import java.util.Scanner;
+
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttClient;
@@ -8,7 +10,7 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
 
-public class App 
+public class App
 {
 	
 	public static void main(String[] args) throws InterruptedException {
@@ -63,7 +65,14 @@ public class App
 				}
 			});
             
-            Thread.sleep(150000);
+            Scanner userInput = new Scanner(System.in);
+            userInput.next();
+            while (!userInput.equals("f")) {
+            	userInput.next();
+            	Thread.sleep(200);
+            }
+            
+            
             sampleClient.disconnect();
             System.out.println("Disconnected");
             //System.exit(0);
