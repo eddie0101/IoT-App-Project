@@ -14,10 +14,10 @@ public class App
 	public static void main(String[] args) throws InterruptedException {
 
         String topic        = "MQTT Examples";
-        String content      = "Message from MqttPublishSample";
+        String content      = "Message from NetBeans";
         int qos             = 2;
         String broker       = "tcp://127.0.0.1:1883";
-        String clientId     = "JavaSample";
+        String clientId     = "JavaSample2";
         MemoryPersistence persistence = new MemoryPersistence();
 
         try {
@@ -33,14 +33,14 @@ public class App
             message.setQos(qos);
             sampleClient.publish(topic, message);
             System.out.println("Message published");
+            sampleClient.subscribe("MQTT Examples");
+            System.out.println("Subscribed to MQTT Examples");
             sampleClient.subscribe("Topic_Test");
             System.out.println("Subscribed to Topic_Test");
             
             
             
             //sampleClient.messageArrivedComplete(qos, qos);
-            
-            System.out.println("Subscribed to Topic_Test");
             
             sampleClient.setCallback(new MqttCallback() {
 				
@@ -63,7 +63,7 @@ public class App
 				}
 			});
             
-            Thread.sleep(15000);
+            Thread.sleep(150000);
             sampleClient.disconnect();
             System.out.println("Disconnected");
             //System.exit(0);
