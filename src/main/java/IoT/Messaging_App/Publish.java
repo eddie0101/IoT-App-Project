@@ -38,7 +38,7 @@ public class Publish {
 		panelPublish.setBackground(Color.DARK_GRAY);
 		frame.setBounds(100, 100, 350, 300);
 		frame.setResizable(false);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new GridLayout(0, 1, 0, 0));
 		
 		panelPublish.setBorder(BorderFactory.createEmptyBorder(30,30, 10, 30));
