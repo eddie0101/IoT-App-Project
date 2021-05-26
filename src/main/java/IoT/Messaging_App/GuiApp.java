@@ -22,29 +22,20 @@ import javax.swing.JPasswordField;
 
 public class GuiApp {
 
-	private JFrame frame;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	JFrame frame;
+	static JTextField textField_Host;
+	static JTextField textField_Port;
+	static JTextField textField_ClientID;
 	private JTextField textField_3;
 	private JPasswordField textField_4;
 	private JTextField textField_5;
 	private JTextField textField_6;
+	static JPanel panel1;
 
 	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GuiApp window = new GuiApp();
-					window.frame.setVisible(true);
-					
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	//public static void main(String[] args) {
+		
+	//}
 
 	
 	public GuiApp() {
@@ -52,9 +43,9 @@ public class GuiApp {
 	}
 
 	
-	private void initialize() {
+	void initialize() {
 		frame = new JFrame("GUI");
-		JPanel panel1= new JPanel();
+		panel1= new JPanel();
 		
 		frame.setBounds(100, 100, 701, 525);
 		frame.setResizable(false);
@@ -70,49 +61,25 @@ public class GuiApp {
 		JLabel lblNewLabel_1 = new JLabel("Host");
 		panel1.add(lblNewLabel_1);
 		
-		textField = new JTextField();
-		panel1.add(textField);
-		textField.setColumns(10);
+		textField_Host = new JTextField();
+		panel1.add(textField_Host);
+		textField_Host.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Port");
 		panel1.add(lblNewLabel_2);
 		
-		textField_1 = new JTextField();
-		panel1.add(textField_1);
-		textField_1.setColumns(10);
+		textField_Port = new JTextField();
+		panel1.add(textField_Port);
+		textField_Port.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("ClientID");
 		panel1.add(lblNewLabel);
 		
-		textField_2 = new JTextField();
-		panel1.add(textField_2);
-		textField_2.setColumns(10);
+		textField_ClientID = new JTextField();
+		panel1.add(textField_ClientID);
+		textField_ClientID.setColumns(10);
+	
 		
-		JButton connect_button = new JButton("CONNECT");
-		connect_button.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            	
-            	//Test username & password
-            	if(true) {
-            		
-	            	try {
-						Publish publish = new Publish();
-						publish.frame.setVisible(true);
-						String host = textField.getText();
-						System.out.println("host: " + host);
-						
-					} catch (Exception e1) {
-						e1.printStackTrace();
-					}
-            	}
-            }
-
-        });
-		
-		
-		panel1.add(connect_button);
 		
 		
 		JLabel lblNewLabel_3 = new JLabel("Username");

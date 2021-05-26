@@ -1,5 +1,10 @@
 package IoT.Messaging_App;
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Scanner;
+
+import javax.swing.JButton;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
@@ -10,19 +15,77 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
 
-public class App
+public class App extends GuiApp
 {
-	
+
+	static String topic        = "MQTT Examples";
+    static String content      = "Message from NetBeans";
+    static int qos             = 2;
+    static String broker;//       = "tcp://127.0.0.1:1883";
+    static String clientId;//     = "JavaSample2";
+    
+    static boolean connectState = false;
+    
 	public static void main(String[] args) throws InterruptedException {
-
-        String topic        = "MQTT Examples";
-        String content      = "Message from NetBeans";
-        int qos             = 2;
-        String broker       = "tcp://127.0.0.1:1883";
-        String clientId     = "JavaSample2";
+        
         MemoryPersistence persistence = new MemoryPersistence();
+        
+        
+        EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					GuiApp window = new GuiApp();
+					window.frame.setVisible(true);
 
+			        JButton connect_button = new JButton("CONNECT");
+					connect_button.addActionListener(new ActionListener() {
+
+			            @Override
+			            public void actionPerformed(ActionEvent e) {
+			            	
+			            	//Test username & password
+			            	if(true) {
+			            		
+				            	try {
+									Publish publish = new Publish();
+									publish.frame.setVisible(true);
+									String host = textField_Host.getText();
+									String port = textField_Port.getText();
+									broker = "tcp://" + host + ":" + port;
+									clientId = textField_ClientID.getText();
+									
+									System.out.println("Host: " + host);
+									System.out.println("Port: " + port);
+									System.out.println("Broker: " + broker);
+									System.out.println("ClientID: " + clientId);
+									connectState = true;
+									
+								} catch (Exception e1) {
+									e1.printStackTrace();
+								}
+			            	}
+			            }
+
+			        });
+					
+					
+					panel1.add(connect_button);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+
+        
+        
+        while (true) {
+        	if (connectState)
+        		break;
+        	Thread.sleep(500);
+        }
+        
         try {
+        	
             @SuppressWarnings("resource")
 			MqttClient sampleClient = new MqttClient(broker, clientId, persistence);
             MqttConnectOptions connOpts = new MqttConnectOptions();
@@ -65,12 +128,7 @@ public class App
 				}
 			});
             
-            Scanner userInput = new Scanner(System.in);
-            userInput.next();
-            while (!userInput.equals("f")) {
-            	userInput.next();
-            	Thread.sleep(200);
-            }
+            Thread.sleep(100000);
             
             
             sampleClient.disconnect();
