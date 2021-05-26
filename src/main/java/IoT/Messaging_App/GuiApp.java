@@ -64,39 +64,29 @@ public class GuiApp {
 		frame.getContentPane().add(panel1);
 		
 		JLabel lblNewLabel_1 = new JLabel("Host");
-		lblNewLabel_1.setFont(new Font("Cambria", Font.BOLD, 12));
 		lblNewLabel_1.setForeground(Color.LIGHT_GRAY);
 		panel1.add(lblNewLabel_1);
 		
 		textField_Host = new JTextField();
-		textField_Host.setFont(new Font("Cambria", Font.BOLD, 14));
-		textField_Host.setText("127.0.0.1");
 		textField_Host.setBackground(Color.GRAY);
-		textField_Host.setForeground(Color.BLACK);
 		panel1.add(textField_Host);
 		textField_Host.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Port");
-		lblNewLabel_2.setFont(new Font("Cambria", Font.BOLD, 12));
 		lblNewLabel_2.setForeground(Color.LIGHT_GRAY);
 		panel1.add(lblNewLabel_2);
 		
 		textField_Port = new JTextField();
-		textField_Port.setFont(new Font("Cambria", Font.BOLD, 14));
 		textField_Port.setBackground(Color.GRAY);
-		textField_Port.setForeground(Color.BLACK);
 		panel1.add(textField_Port);
 		textField_Port.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("ClientID");
-		lblNewLabel.setFont(new Font("Cambria", Font.BOLD, 12));
 		lblNewLabel.setForeground(Color.LIGHT_GRAY);
 		panel1.add(lblNewLabel);
 		
 		textField_ClientID = new JTextField();
-		textField_ClientID.setFont(new Font("Cambria", Font.BOLD, 14));
 		textField_ClientID.setBackground(Color.GRAY);
-		textField_ClientID.setForeground(Color.BLACK);
 		panel1.add(textField_ClientID);
 		textField_ClientID.setColumns(10);
 	
@@ -104,51 +94,42 @@ public class GuiApp {
 		
 		
 		JLabel lblNewLabel_3 = new JLabel("Username");
-		lblNewLabel_3.setFont(new Font("Cambria", Font.BOLD, 12));
 		lblNewLabel_3.setForeground(Color.LIGHT_GRAY);
 		panel1.add(lblNewLabel_3);
 		
 		textField_3 = new JTextField();
-		textField_3.setFont(new Font("Cambria", Font.BOLD, 14));
 		textField_3.setBackground(Color.GRAY);
 		panel1.add(textField_3);
 		textField_3.setColumns(10);
 		
 		JLabel lblNewLabel_4 = new JLabel("Password");
-		lblNewLabel_4.setFont(new Font("Cambria", Font.BOLD, 12));
 		lblNewLabel_4.setForeground(Color.LIGHT_GRAY);
 		panel1.add(lblNewLabel_4);
 		
 		textField_4 = new JPasswordField();
-		textField_4.setFont(new Font("Cambria", Font.BOLD, 14));
 		textField_4.setBackground(Color.GRAY);
 		panel1.add(textField_4);
 		textField_4.setColumns(10);
 		
 		JLabel lblNewLabel_5 = new JLabel("Keep Alive");
-		lblNewLabel_5.setFont(new Font("Cambria", Font.BOLD, 12));
 		lblNewLabel_5.setForeground(Color.LIGHT_GRAY);
 		panel1.add(lblNewLabel_5);
 		
 		textField_5 = new JTextField();
-		textField_5.setFont(new Font("Cambria", Font.BOLD, 14));
 		textField_5.setBackground(Color.GRAY);
 		panel1.add(textField_5);
 		textField_5.setColumns(10);
 		
 		JLabel lblNewLabel_6 = new JLabel("Last-will Topic");
-		lblNewLabel_6.setFont(new Font("Cambria", Font.BOLD, 12));
 		lblNewLabel_6.setForeground(Color.LIGHT_GRAY);
 		panel1.add(lblNewLabel_6);
 		
 		textField_6 = new JTextField();
-		textField_6.setFont(new Font("Cambria", Font.BOLD, 14));
 		textField_6.setBackground(Color.GRAY);
 		panel1.add(textField_6);
 		textField_6.setColumns(10);
 		
 		JLabel lblNewLabel_7 = new JLabel("QoS");
-		lblNewLabel_7.setFont(new Font("Cambria", Font.BOLD, 12));
 		lblNewLabel_7.setForeground(Color.LIGHT_GRAY);
 		
 		panel1.add(lblNewLabel_7);
