@@ -16,26 +16,15 @@ import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.DropMode;
+import java.awt.Color;
+import javax.swing.JTextPane;
 
 public class Publish {
 
 	JFrame frame;
-	private JTextField textField;
-
-	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Publish window = new Publish();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	private JLabel topicLabel;
+	private JTextField topicTextField;
+	private JLabel messageLabel;
 	
 	public Publish() {
 		initialize();
@@ -44,58 +33,50 @@ public class Publish {
 	
 	private void initialize() {
 		frame = new JFrame("Publish");
-		JPanel panel2=new JPanel();
+		frame.setBackground(Color.DARK_GRAY);
+		JPanel panelPublish=new JPanel();
+		panelPublish.setBackground(Color.DARK_GRAY);
 		frame.setBounds(100, 100, 350, 300);
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new GridLayout(0, 1, 0, 0));
 		
-		panel2.setBorder(BorderFactory.createEmptyBorder(30,30, 10, 30));
-		panel2.setLayout(new GridLayout(0,1));
-		frame.getContentPane().add(panel2);
+		panelPublish.setBorder(BorderFactory.createEmptyBorder(30,30, 10, 30));
+		frame.getContentPane().add(panelPublish);
 		
+		panelPublish.setBorder(BorderFactory.createEmptyBorder(30,30, 10, 30));
+		panelPublish.setLayout(null);
+		panelPublish.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Topic");
-		frame.getContentPane().add(lblNewLabel);
+		topicLabel = new JLabel("Topic");
+		topicLabel.setForeground(Color.LIGHT_GRAY);
+		topicLabel.setFont(new Font("Cambria", Font.BOLD, 15));
+		topicLabel.setBounds(49, 10, 252, 19);
+		panelPublish.add(topicLabel);
 		
-		textField = new JTextField();
-		frame.getContentPane().add(textField);
-		textField.setColumns(10);
+		topicTextField = new JTextField();
+		topicTextField.setBackground(Color.GRAY);
+		topicTextField.setForeground(Color.BLACK);
+		topicTextField.setFont(new Font("Courier New", Font.BOLD, 15));
+		topicTextField.setBounds(49, 39, 252, 28);
+		panelPublish.add(topicTextField);
+		topicTextField.setColumns(10);
 		
-		JLabel lblNewLabel_1 = new JLabel("QoS");
-		frame.getContentPane().add(lblNewLabel_1);
+		messageLabel = new JLabel("Message");
+		messageLabel.setFont(new Font("Cambria", Font.BOLD, 15));
+		messageLabel.setForeground(Color.LIGHT_GRAY);
+		messageLabel.setBounds(49, 87, 252, 19);
+		panelPublish.add(messageLabel);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2"}));
-
-		frame.getContentPane().add(comboBox);
+		JTextPane textPane = new JTextPane();
+		textPane.setFont(new Font("Courier New", Font.BOLD, 15));
+		textPane.setBackground(Color.GRAY);
+		textPane.setBounds(49, 116, 252, 69);
+		panelPublish.add(textPane);
 		
-		JPanel panel_1 = new JPanel();
-		frame.getContentPane().add(panel_1);
-		
-		JLabel lblNewLabel_2 = new JLabel("Retain");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		panel_1.add(lblNewLabel_2);
-		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("");
-		panel_1.add(chckbxNewCheckBox);
-		chckbxNewCheckBox.setSelected(true);
-		
-		JButton btnNewButton = new JButton("Publish");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		frame.getContentPane().add(btnNewButton);
-		
-		JLabel lblMessage = new JLabel("Message");
-		lblMessage.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblMessage.setHorizontalAlignment(SwingConstants.LEFT);
-		frame.getContentPane().add(lblMessage);
-		
-		JTextArea textArea = new JTextArea();
-		textArea.setRows(10);
-		frame.getContentPane().add(textArea);
-		
-		panel2.setBorder(BorderFactory.createEmptyBorder(30,30, 10, 30));
-		panel2.setLayout(new GridLayout(0,1));
+		JButton publishButton = new JButton("publish");
+		publishButton.setFont(new Font("Cambria", Font.BOLD, 15));
+		publishButton.setBounds(49, 199, 252, 40);
+		panelPublish.add(publishButton);
 	}
-
 }

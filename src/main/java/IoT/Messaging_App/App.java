@@ -25,6 +25,12 @@ public class App extends GuiApp
     static String clientId;//     = "JavaSample2";
     
     static boolean connectState = false;
+    static String allOutputText = "";
+    
+    static void printOutputText(String textLine) {
+    	allOutputText =  allOutputText + textLine + '\n';
+    	textArea.setText(allOutputText);
+    }
     
 	public static void main(String[] args) throws InterruptedException {
         
@@ -34,11 +40,14 @@ public class App extends GuiApp
         EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GuiApp window = new GuiApp();
-					window.frame.setVisible(true);
+					GuiApp appWindow = new GuiApp();
+					appWindow.frame.setVisible(true);
+					
+					Publish publishWindow = new Publish();
+					//publishWindow.frame.setVisible(true);
 
-			        JButton connect_button = new JButton("CONNECT");
-					connect_button.addActionListener(new ActionListener() {
+			        //JButton connect_button = new JButton("CONNECT");
+					connectButton.addActionListener(new ActionListener() {
 
 			            @Override
 			            public void actionPerformed(ActionEvent e) {
@@ -47,17 +56,31 @@ public class App extends GuiApp
 			            	if(true) {
 			            		
 				            	try {
-									Publish publish = new Publish();
-									publish.frame.setVisible(true);
+									//Publish publish = new Publish();
+									//publish.frame.setVisible(true);
+									
+									
+									subscribeButton.setEnabled(true);
+									publishButton.setEnabled(true);
+									
+									publishButton.addActionListener(new ActionListener() {
+										
+										@Override
+										public void actionPerformed(ActionEvent e) {
+											publishWindow.frame.setVisible(true);
+											
+										}
+									});
+									
 									String host = textField_Host.getText();
 									String port = textField_Port.getText();
 									broker = "tcp://" + host + ":" + port;
 									clientId = textField_ClientID.getText();
 									
-									System.out.println("Host: " + host);
-									System.out.println("Port: " + port);
-									System.out.println("Broker: " + broker);
-									System.out.println("ClientID: " + clientId);
+									System.out.println("Host: " + host);			printOutputText("Host: " + host);
+									System.out.println("Port: " + port);			printOutputText("Port: " + port);
+									System.out.println("Broker: " + broker); 		printOutputText("Broker: " + broker);
+									System.out.println("ClientID: " + clientId); 	printOutputText("ClientID: " + clientId);
 									connectState = true;
 									
 								} catch (Exception e1) {
@@ -69,7 +92,7 @@ public class App extends GuiApp
 			        });
 					
 					
-					panel1.add(connect_button);
+					//panel1.add(connect_button);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -90,18 +113,18 @@ public class App extends GuiApp
 			MqttClient sampleClient = new MqttClient(broker, clientId, persistence);
             MqttConnectOptions connOpts = new MqttConnectOptions();
             connOpts.setCleanSession(true);
-            System.out.println("Connecting to broker: "+broker);
+            System.out.println("Connecting to broker: " + broker);				printOutputText("Connecting to broker: "+broker);
             sampleClient.connect(connOpts);
-            System.out.println("Connected");
-            System.out.println("Publishing message: "+content);
+            System.out.println("Connected");									printOutputText("Connected");
+            System.out.println("Publishing message: " + content);				printOutputText("Publishing message: " + content);
             MqttMessage message = new MqttMessage(content.getBytes());
             message.setQos(qos);
             sampleClient.publish(topic, message);
-            System.out.println("Message published");
-            sampleClient.subscribe("MQTT Examples");
-            System.out.println("Subscribed to MQTT Examples");
-            sampleClient.subscribe("Topic_Test");
-            System.out.println("Subscribed to Topic_Test");
+            System.out.println("Message published");							printOutputText("Message published");
+            sampleClient.subscribe("MQTT Examples");							printOutputText("MQTT Examples");
+            System.out.println("Subscribed to MQTT Examples");					printOutputText("Subscribed to MQTT Examples");
+            sampleClient.subscribe("Topic_Test");								printOutputText("Topic_Test");
+            System.out.println("Subscribed to Topic_Test");						printOutputText("Subscribed to Topic_Test");
             
             
             

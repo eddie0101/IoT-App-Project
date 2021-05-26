@@ -21,6 +21,11 @@ import javax.swing.JPasswordField;
 import java.awt.Color;
 import java.awt.SystemColor;
 import javax.swing.UIManager;
+import javax.swing.text.DefaultCaret;
+
+import java.awt.TextArea;
+import java.awt.Label;
+import java.awt.Button;
 
 
 public class GuiApp {
@@ -31,9 +36,11 @@ public class GuiApp {
 	static JTextField textField_ClientID;
 	private JTextField textField_3;
 	private JPasswordField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
 	static JPanel panel1;
+	static JButton connectButton;
+	static TextArea textArea;
+	static JButton subscribeButton;
+	static JButton publishButton;
 
 	
 	//public static void main(String[] args) {
@@ -59,33 +66,48 @@ public class GuiApp {
 
 		
 		panel1.setBorder(BorderFactory.createEmptyBorder(30,30, 10, 30));
-		panel1.setLayout(new GridLayout(0,1));
 		
 		frame.getContentPane().add(panel1);
+		panel1.setLayout(null);
 		
 		JLabel lblNewLabel_1 = new JLabel("Host");
+		lblNewLabel_1.setFont(new Font("Cambria", Font.BOLD, 12));
+		lblNewLabel_1.setBounds(30, 10, 288, 26);
 		lblNewLabel_1.setForeground(Color.LIGHT_GRAY);
 		panel1.add(lblNewLabel_1);
 		
 		textField_Host = new JTextField();
+		textField_Host.setFont(new Font("Courier New", Font.BOLD, 15));
+		textField_Host.setForeground(Color.BLACK);
+		textField_Host.setBounds(30, 36, 288, 26);
 		textField_Host.setBackground(Color.GRAY);
 		panel1.add(textField_Host);
 		textField_Host.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Port");
+		lblNewLabel_2.setFont(new Font("Cambria", Font.BOLD, 12));
+		lblNewLabel_2.setBounds(30, 60, 288, 26);
 		lblNewLabel_2.setForeground(Color.LIGHT_GRAY);
 		panel1.add(lblNewLabel_2);
 		
 		textField_Port = new JTextField();
+		textField_Port.setFont(new Font("Courier New", Font.BOLD, 15));
+		textField_Port.setForeground(Color.BLACK);
+		textField_Port.setBounds(30, 83, 288, 26);
 		textField_Port.setBackground(Color.GRAY);
 		panel1.add(textField_Port);
 		textField_Port.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("ClientID");
+		lblNewLabel.setFont(new Font("Cambria", Font.BOLD, 12));
+		lblNewLabel.setBounds(30, 107, 288, 26);
 		lblNewLabel.setForeground(Color.LIGHT_GRAY);
 		panel1.add(lblNewLabel);
 		
 		textField_ClientID = new JTextField();
+		textField_ClientID.setFont(new Font("Courier New", Font.BOLD, 15));
+		textField_ClientID.setForeground(Color.BLACK);
+		textField_ClientID.setBounds(30, 132, 288, 26);
 		textField_ClientID.setBackground(Color.GRAY);
 		panel1.add(textField_ClientID);
 		textField_ClientID.setColumns(10);
@@ -94,80 +116,73 @@ public class GuiApp {
 		
 		
 		JLabel lblNewLabel_3 = new JLabel("Username");
+		lblNewLabel_3.setFont(new Font("Cambria", Font.BOLD, 12));
+		lblNewLabel_3.setBounds(30, 156, 288, 26);
 		lblNewLabel_3.setForeground(Color.LIGHT_GRAY);
 		panel1.add(lblNewLabel_3);
 		
 		textField_3 = new JTextField();
+		textField_3.setFont(new Font("Courier New", Font.BOLD, 15));
+		textField_3.setForeground(Color.BLACK);
+		textField_3.setBounds(30, 181, 288, 26);
 		textField_3.setBackground(Color.GRAY);
 		panel1.add(textField_3);
 		textField_3.setColumns(10);
 		
 		JLabel lblNewLabel_4 = new JLabel("Password");
+		lblNewLabel_4.setFont(new Font("Cambria", Font.BOLD, 12));
+		lblNewLabel_4.setBounds(30, 205, 288, 26);
 		lblNewLabel_4.setForeground(Color.LIGHT_GRAY);
 		panel1.add(lblNewLabel_4);
 		
 		textField_4 = new JPasswordField();
+		textField_4.setFont(new Font("Courier New", Font.BOLD, 15));
+		textField_4.setForeground(Color.BLACK);
+		textField_4.setBounds(30, 230, 288, 26);
 		textField_4.setBackground(Color.GRAY);
 		panel1.add(textField_4);
 		textField_4.setColumns(10);
 		
-		JLabel lblNewLabel_5 = new JLabel("Keep Alive");
-		lblNewLabel_5.setForeground(Color.LIGHT_GRAY);
-		panel1.add(lblNewLabel_5);
+		textArea = new TextArea("", 1, 20, TextArea.SCROLLBARS_NONE);
+		//textArea.setCursorPosition(textArea.getValue().length());
+		//textArea = new JTextArea("", 1, 20);
+		//textArea.setWrapStyleWord(true);
+		textArea.setEditable(false);
+		textArea.setFont(new Font("Consolas", Font.BOLD, 12));
+		textArea.setForeground(Color.BLACK);
+		textArea.setBackground(Color.GRAY);
+		textArea.setBounds(30, 306, 288, 161);
+		panel1.add(textArea);
+		//caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 		
-		textField_5 = new JTextField();
-		textField_5.setBackground(Color.GRAY);
-		panel1.add(textField_5);
-		textField_5.setColumns(10);
-		
-		JLabel lblNewLabel_6 = new JLabel("Last-will Topic");
-		lblNewLabel_6.setForeground(Color.LIGHT_GRAY);
-		panel1.add(lblNewLabel_6);
-		
-		textField_6 = new JTextField();
-		textField_6.setBackground(Color.GRAY);
-		panel1.add(textField_6);
-		textField_6.setColumns(10);
-		
-		JLabel lblNewLabel_7 = new JLabel("QoS");
-		lblNewLabel_7.setForeground(Color.LIGHT_GRAY);
-		
-		panel1.add(lblNewLabel_7);
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBackground(Color.LIGHT_GRAY);
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"0", "1", "2"}));
-		comboBox.setMaximumRowCount(3);
-		comboBox.setToolTipText("1");
-		panel1.add(comboBox);
-		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("Last-Will Retain");
-		chckbxNewCheckBox.setForeground(Color.LIGHT_GRAY);
-		chckbxNewCheckBox.setBackground(Color.DARK_GRAY);
-		chckbxNewCheckBox.setHorizontalAlignment(SwingConstants.CENTER);
-		panel1.add(chckbxNewCheckBox);
+		Label label = new Label("Output");
+		label.setFont(new Font("Cambria", Font.BOLD, 12));
+		label.setForeground(Color.LIGHT_GRAY);
+		label.setBounds(30, 274, 288, 26);
+		panel1.add(label);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.DARK_GRAY);
 		panel.setBorder(BorderFactory.createEmptyBorder(30,30, 10, 30));
-		panel.setLayout(new GridLayout(0,1));
 		
 		frame.getContentPane().add(panel);
+		panel.setLayout(null);
 		
+		connectButton = new JButton("connect");
+		connectButton.setFont(new Font("Cambria", Font.BOLD, 15));
+		connectButton.setBounds(102, 36, 132, 46);
+		panel.add(connectButton);
 		
-		JLabel lblNewLabel_8_1 = new JLabel("Last-Will Message");
-		lblNewLabel_8_1.setFont(new Font("Tahoma", Font.PLAIN, 23));
-		lblNewLabel_8_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_8_1.setEnabled(false);
-		panel.add(lblNewLabel_8_1);
+		subscribeButton = new JButton("subscribe");
+		subscribeButton.setEnabled(false);
+		subscribeButton.setFont(new Font("Cambria", Font.BOLD, 15));
+		subscribeButton.setBounds(102, 120, 132, 46);
+		panel.add(subscribeButton);
 		
-		JTextArea textArea_1 = new JTextArea();
-		textArea_1.setBackground(Color.GRAY);
-		textArea_1.setTabSize(10);
-		textArea_1.setRows(5);
-		panel.add(textArea_1);
+		publishButton = new JButton("publish");
+		publishButton.setEnabled(false);
+		publishButton.setFont(new Font("Cambria", Font.BOLD, 15));
+		publishButton.setBounds(102, 204, 132, 46);
+		panel.add(publishButton);
 	}
-	
-	
-
 }
