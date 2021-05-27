@@ -28,7 +28,7 @@ import java.awt.Label;
 import java.awt.Button;
 
 
-public class GuiApp {
+public class GuiApp{
 
 	JFrame frame;
 	static JTextField textField_Host;

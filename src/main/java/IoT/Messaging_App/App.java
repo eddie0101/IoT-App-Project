@@ -37,6 +37,8 @@ public class App extends GuiApp
         
         MemoryPersistence persistence = new MemoryPersistence();
         
+		Publish pubWindow = new Publish();
+		Subscribe subWindow = new Subscribe();
         
         EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -44,8 +46,6 @@ public class App extends GuiApp
 					GuiApp appWindow = new GuiApp();
 					appWindow.frame.setVisible(true);
 					
-					Publish pubWindow = new Publish();
-					Subscribe subWindow = new Subscribe();
 					//publishWindow.frame.setVisible(true);
 
 			        //JButton connect_button = new JButton("CONNECT");
@@ -122,27 +122,31 @@ public class App extends GuiApp
         try {
         	
             @SuppressWarnings("resource")
-			MqttClient sampleClient = new MqttClient(broker, clientId, persistence);
+			MqttClient client = new MqttClient(broker, clientId, persistence);
             MqttConnectOptions connOpts = new MqttConnectOptions();
             connOpts.setCleanSession(true);
             System.out.println("Connecting to broker: " + broker);				printOutputText("Connecting to broker: "+broker);
-            sampleClient.connect(connOpts);
+            client.connect(connOpts);
             System.out.println("Connected");									printOutputText("Connected");
+            
+            
+
+    		pubWindow.publishBtnPressed(client);
+            
             System.out.println("Publishing message: " + content);				printOutputText("Publishing message: " + content);
             MqttMessage message = new MqttMessage(content.getBytes());
             message.setQos(qos);
-            sampleClient.publish(topic, message);
+            client.publish(topic, message);
             System.out.println("Message published");							printOutputText("Message published");
-            sampleClient.subscribe("MQTT Examples");							printOutputText("MQTT Examples");
+            client.subscribe("MQTT Examples");							printOutputText("MQTT Examples");
             System.out.println("Subscribed to MQTT Examples");					printOutputText("Subscribed to MQTT Examples");
-            sampleClient.subscribe("Topic_Test");								printOutputText("Topic_Test");
+            client.subscribe("Topic_Test");								printOutputText("Topic_Test");
             System.out.println("Subscribed to Topic_Test");						printOutputText("Subscribed to Topic_Test");
             
             
             
-            //sampleClient.messageArrivedComplete(qos, qos);
             
-            sampleClient.setCallback(new MqttCallback() {
+            client.setCallback(new MqttCallback() {
 				
 				@Override
 				public void messageArrived(String topic, MqttMessage message) throws Exception {
@@ -166,7 +170,7 @@ public class App extends GuiApp
             Thread.sleep(1000000);
             
             
-            sampleClient.disconnect();
+            client.disconnect();
             System.out.println("Disconnected");
             //System.exit(0);
         } catch(MqttException me) {

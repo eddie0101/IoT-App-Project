@@ -14,20 +14,44 @@ import javax.swing.JCheckBox;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
+
+import org.eclipse.paho.client.mqttv3.MqttClient;
+import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
+
 import java.awt.Font;
 import javax.swing.DropMode;
 import java.awt.Color;
 import javax.swing.JTextPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Publish {
 
 	JFrame framePub;
+	JButton pubBtn;
+	JTextPane textPane;
 	private JLabel topicLabel;
 	private JTextField topicTextField;
 	private JLabel messageLabel;
 	
 	public Publish() {
 		initialize();
+	}
+	
+	public void publishBtnPressed(MqttClient clientParameter) {
+		pubBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String topicText = topicTextField.getText();
+				MqttMessage message = new MqttMessage(textPane.getText().getBytes());
+				try {
+					clientParameter.publish(topicText, message);
+				} catch (MqttException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 	}
 
 	
@@ -68,15 +92,15 @@ public class Publish {
 		messageLabel.setBounds(49, 87, 252, 19);
 		panelPublish.add(messageLabel);
 		
-		JTextPane textPane = new JTextPane();
+		textPane = new JTextPane();
 		textPane.setFont(new Font("Courier New", Font.BOLD, 15));
 		textPane.setBackground(Color.GRAY);
 		textPane.setBounds(49, 116, 252, 69);
 		panelPublish.add(textPane);
 		
-		JButton publishButton = new JButton("publish");
-		publishButton.setFont(new Font("Cambria", Font.BOLD, 15));
-		publishButton.setBounds(49, 199, 252, 40);
-		panelPublish.add(publishButton);
+		pubBtn = new JButton("publish");
+		pubBtn.setFont(new Font("Cambria", Font.BOLD, 15));
+		pubBtn.setBounds(49, 199, 252, 40);
+		panelPublish.add(pubBtn);
 	}
 }
