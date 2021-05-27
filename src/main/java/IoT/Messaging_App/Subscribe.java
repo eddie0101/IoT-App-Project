@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
@@ -27,11 +28,12 @@ import java.awt.Color;
 import javax.swing.JTextPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.TextArea;
 
 public class Subscribe {
 
 	JFrame frameSub;
-	JTextPane textPane;
+	TextArea textArea;
 	private JButton subscribeButton;
 	private JLabel topicLabel;
 	private JTextField topicTextField;
@@ -44,7 +46,7 @@ public class Subscribe {
 
 	private void printTextMessage(String textLine) { //printing inside "Recived messages" area
     	allTextMessages =  allTextMessages + textLine + '\n';
-    	textPane.setText(allTextMessages);
+    	textArea.setText(allTextMessages);
     }
 	
 	public void subscribeBtnPressed(MqttClient clientParameter) {
@@ -125,35 +127,34 @@ public class Subscribe {
 		//panelSubscribe.setLayout(null);
 		
 		topicLabel = new JLabel("Topic");
+		topicLabel.setBounds(49, 10, 252, 19);
 		topicLabel.setForeground(Color.LIGHT_GRAY);
 		topicLabel.setFont(new Font("Cambria", Font.BOLD, 15));
-		topicLabel.setBounds(49, 10, 252, 19);
 		panelSubscribe.add(topicLabel);
 		
 		topicTextField = new JTextField();
+		topicTextField.setBounds(49, 39, 252, 28);
 		topicTextField.setBackground(Color.GRAY);
 		topicTextField.setForeground(Color.BLACK);
 		topicTextField.setFont(new Font("Courier New", Font.BOLD, 15));
-		topicTextField.setBounds(49, 39, 252, 28);
 		panelSubscribe.add(topicTextField);
 		topicTextField.setColumns(10);
 		
 		messageLabel = new JLabel("Received messages");
+		messageLabel.setBounds(49, 87, 252, 19);
 		messageLabel.setFont(new Font("Cambria", Font.BOLD, 15));
 		messageLabel.setForeground(Color.LIGHT_GRAY);
-		messageLabel.setBounds(49, 87, 252, 19);
 		panelSubscribe.add(messageLabel);
 		
-		textPane = new JTextPane();
-		textPane.setEditable(false);
-		textPane.setFont(new Font("Courier New", Font.BOLD, 15));
-		textPane.setBackground(Color.GRAY);
-		textPane.setBounds(49, 116, 252, 69);
-		panelSubscribe.add(textPane);
-		
 		subscribeButton = new JButton("subscribe");
-		subscribeButton.setFont(new Font("Cambria", Font.BOLD, 15));
 		subscribeButton.setBounds(49, 199, 252, 40);
+		subscribeButton.setFont(new Font("Cambria", Font.BOLD, 15));
 		panelSubscribe.add(subscribeButton);
+		
+		textArea = new TextArea("", 1, 20, TextArea.SCROLLBARS_NONE);
+		textArea.setEditable(false);
+		textArea.setBackground(Color.GRAY);
+		textArea.setBounds(49, 116, 252, 69);
+		panelSubscribe.add(textArea);
 	}
 }
