@@ -19,64 +19,66 @@ import javax.swing.DropMode;
 import java.awt.Color;
 import javax.swing.JTextPane;
 
-public class Publish {
+public class Subscribe {
 
-	JFrame framePub;
+	JFrame frameSub;
 	private JLabel topicLabel;
 	private JTextField topicTextField;
 	private JLabel messageLabel;
 	
-	public Publish() {
+	public Subscribe() {
 		initialize();
 	}
 
 	
 	private void initialize() {
-		framePub = new JFrame("Publish");
-		framePub.setBackground(Color.DARK_GRAY);
-		JPanel panelPublish=new JPanel();
-		panelPublish.setBackground(Color.DARK_GRAY);
-		framePub.setBounds(100, 100, 350, 300);
-		framePub.setResizable(false);
+		frameSub = new JFrame("Publish");
+		frameSub.setTitle("Subscribe");
+		frameSub.setBackground(Color.DARK_GRAY);
+		JPanel panelSubscribe=new JPanel();
+		panelSubscribe.setBackground(Color.DARK_GRAY);
+		frameSub.setBounds(100, 100, 350, 300);
+		frameSub.setResizable(false);
 		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		framePub.getContentPane().setLayout(new GridLayout(0, 1, 0, 0));
+		frameSub.getContentPane().setLayout(new GridLayout(0, 1, 0, 0));
 		
-		panelPublish.setBorder(BorderFactory.createEmptyBorder(30,30, 10, 30));
-		framePub.getContentPane().add(panelPublish);
+		panelSubscribe.setBorder(BorderFactory.createEmptyBorder(30,30, 10, 30));
+		frameSub.getContentPane().add(panelSubscribe);
 		
-		panelPublish.setBorder(BorderFactory.createEmptyBorder(30,30, 10, 30));
-		panelPublish.setLayout(null);
-		//panelPublish.setLayout(null);
+		panelSubscribe.setBorder(BorderFactory.createEmptyBorder(30,30, 10, 30));
+		panelSubscribe.setLayout(null);
+		//panelSubscribe.setLayout(null);
 		
 		topicLabel = new JLabel("Topic");
 		topicLabel.setForeground(Color.LIGHT_GRAY);
 		topicLabel.setFont(new Font("Cambria", Font.BOLD, 15));
 		topicLabel.setBounds(49, 10, 252, 19);
-		panelPublish.add(topicLabel);
+		panelSubscribe.add(topicLabel);
 		
 		topicTextField = new JTextField();
 		topicTextField.setBackground(Color.GRAY);
 		topicTextField.setForeground(Color.BLACK);
 		topicTextField.setFont(new Font("Courier New", Font.BOLD, 15));
 		topicTextField.setBounds(49, 39, 252, 28);
-		panelPublish.add(topicTextField);
+		panelSubscribe.add(topicTextField);
 		topicTextField.setColumns(10);
 		
-		messageLabel = new JLabel("Message");
+		messageLabel = new JLabel("Received messages");
 		messageLabel.setFont(new Font("Cambria", Font.BOLD, 15));
 		messageLabel.setForeground(Color.LIGHT_GRAY);
 		messageLabel.setBounds(49, 87, 252, 19);
-		panelPublish.add(messageLabel);
+		panelSubscribe.add(messageLabel);
 		
 		JTextPane textPane = new JTextPane();
+		textPane.setEditable(false);
 		textPane.setFont(new Font("Courier New", Font.BOLD, 15));
 		textPane.setBackground(Color.GRAY);
 		textPane.setBounds(49, 116, 252, 69);
-		panelPublish.add(textPane);
+		panelSubscribe.add(textPane);
 		
-		JButton publishButton = new JButton("publish");
-		publishButton.setFont(new Font("Cambria", Font.BOLD, 15));
-		publishButton.setBounds(49, 199, 252, 40);
-		panelPublish.add(publishButton);
+		JButton subscribeButton = new JButton("subscribe");
+		subscribeButton.setFont(new Font("Cambria", Font.BOLD, 15));
+		subscribeButton.setBounds(49, 199, 252, 40);
+		panelSubscribe.add(subscribeButton);
 	}
 }

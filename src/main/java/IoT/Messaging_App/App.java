@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.Scanner;
 
 import javax.swing.JButton;
+import javax.swing.JComponent;
 
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
@@ -43,7 +44,8 @@ public class App extends GuiApp
 					GuiApp appWindow = new GuiApp();
 					appWindow.frame.setVisible(true);
 					
-					Publish publishWindow = new Publish();
+					Publish pubWindow = new Publish();
+					Subscribe subWindow = new Subscribe();
 					//publishWindow.frame.setVisible(true);
 
 			        //JButton connect_button = new JButton("CONNECT");
@@ -63,14 +65,24 @@ public class App extends GuiApp
 									subscribeButton.setEnabled(true);
 									publishButton.setEnabled(true);
 									
+
+									subscribeButton.addActionListener(new ActionListener() {
+										public void actionPerformed(ActionEvent e) {
+											subWindow.frameSub.setVisible(true);
+											
+										}
+									});
+									
 									publishButton.addActionListener(new ActionListener() {
 										
 										@Override
 										public void actionPerformed(ActionEvent e) {
-											publishWindow.frame.setVisible(true);
+											pubWindow.framePub.setVisible(true);
 											
 										}
 									});
+								
+									
 									
 									String host = textField_Host.getText();
 									String port = textField_Port.getText();
@@ -151,7 +163,7 @@ public class App extends GuiApp
 				}
 			});
             
-            Thread.sleep(100000);
+            Thread.sleep(1000000);
             
             
             sampleClient.disconnect();

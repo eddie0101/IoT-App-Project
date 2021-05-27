@@ -55,6 +55,8 @@ public class GuiApp {
 	
 	void initialize() {
 		frame = new JFrame("GUI");
+		frame.setBackground(Color.DARK_GRAY);
+		frame.getContentPane().setBackground(Color.DARK_GRAY);
 		frame.setTitle("MyIRC");
 		panel1= new JPanel();
 		panel1.setBackground(Color.DARK_GRAY);
