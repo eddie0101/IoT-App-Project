@@ -40,6 +40,7 @@ public class Publish {
 	}
 	
 	public void publishBtnPressed(MqttClient clientParameter) {
+		
 		pubBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String topicText = topicTextField.getText();

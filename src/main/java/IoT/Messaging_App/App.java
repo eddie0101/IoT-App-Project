@@ -19,7 +19,7 @@ import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 public class App extends GuiApp
 {
 
-	static String topic        = "MQTT Examples";
+	//static String topic        = "MQTT Examples";
     static String content      = "Message from NetBeans";
     static int qos             = 2;
     static String broker;//       = "tcp://127.0.0.1:1883";
@@ -28,7 +28,7 @@ public class App extends GuiApp
     static boolean connectState = false;
     static String allOutputText = "";
     
-    static void printOutputText(String textLine) {
+    static void printOutputText(String textLine) {  // printing inside "Output" area
     	allOutputText =  allOutputText + textLine + '\n';
     	textArea.setText(allOutputText);
     }
@@ -132,40 +132,46 @@ public class App extends GuiApp
             
 
     		pubWindow.publishBtnPressed(client);
+    		
             
             System.out.println("Publishing message: " + content);				printOutputText("Publishing message: " + content);
             MqttMessage message = new MqttMessage(content.getBytes());
             message.setQos(qos);
-            client.publish(topic, message);
+            //client.publish(topic, message);
             System.out.println("Message published");							printOutputText("Message published");
-            client.subscribe("MQTT Examples");							printOutputText("MQTT Examples");
-            System.out.println("Subscribed to MQTT Examples");					printOutputText("Subscribed to MQTT Examples");
-            client.subscribe("Topic_Test");								printOutputText("Topic_Test");
-            System.out.println("Subscribed to Topic_Test");						printOutputText("Subscribed to Topic_Test");
+            
+            
+            subWindow.subscribeBtnPressed(client);
+            
+            
+            //client.subscribe("MQTT Examples");									
+            //System.out.println("Subscribed to MQTT Examples");					printOutputText("Subscribed to MQTT Examples");
+            //client.subscribe("Topic_Test");										
+            //System.out.println("Subscribed to Topic_Test");						printOutputText("Subscribed to Topic_Test");
             
             
             
             
-            client.setCallback(new MqttCallback() {
-				
-				@Override
-				public void messageArrived(String topic, MqttMessage message) throws Exception {
-					// TODO Auto-generated method stub
-					System.out.println(message.toString());
-				}
-				
-				@Override
-				public void deliveryComplete(IMqttDeliveryToken token) {
-					// TODO Auto-generated method stub
-					
-				}
-				
-				@Override
-				public void connectionLost(Throwable cause) {
-					// TODO Auto-generated method stub
-					
-				}
-			});
+//            client.setCallback(new MqttCallback() {
+//				
+//				@Override
+//				public void messageArrived(String topic, MqttMessage message) throws Exception {
+//					// TODO Auto-generated method stub
+//					System.out.println(message.toString());
+//				}
+//				
+//				@Override
+//				public void deliveryComplete(IMqttDeliveryToken token) {
+//					// TODO Auto-generated method stub
+//					
+//				}
+//				
+//				@Override
+//				public void connectionLost(Throwable cause) {
+//					// TODO Auto-generated method stub
+//					
+//				}
+//			});
             
             Thread.sleep(1000000);
             
