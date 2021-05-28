@@ -61,29 +61,7 @@ public class App extends GuiApp
 									//Publish publish = new Publish();
 									//publish.frame.setVisible(true);
 									
-									
-									subscribeButton.setEnabled(true);
-									publishButton.setEnabled(true);
-									
 
-									subscribeButton.addActionListener(new ActionListener() {
-										public void actionPerformed(ActionEvent e) {
-											subWindow.frameSub.setVisible(true);
-											
-										}
-									});
-									
-									publishButton.addActionListener(new ActionListener() {
-										
-										@Override
-										public void actionPerformed(ActionEvent e) {
-											pubWindow.framePub.setVisible(true);
-											
-										}
-									});
-								
-									
-									
 									String host = textField_Host.getText();
 									String port = textField_Port.getText();
 									broker = "tcp://" + host + ":" + port;
@@ -94,6 +72,31 @@ public class App extends GuiApp
 									System.out.println("Broker: " + broker); 		printOutputText("Broker: " + broker);
 									System.out.println("ClientID: " + clientId); 	printOutputText("ClientID: " + clientId);
 									connectState = true;
+									
+									subscribeButton.setEnabled(true);
+									publishButton.setEnabled(true);
+									
+
+									subscribeButton.addActionListener(new ActionListener() {
+										public void actionPerformed(ActionEvent e) {
+											subWindow.frameSub.setVisible(true);
+											subWindow.frameSub.setTitle("Subscribe (" + clientId + ")");
+											
+										}
+									});
+									
+									publishButton.addActionListener(new ActionListener() {
+										
+										@Override
+										public void actionPerformed(ActionEvent e) {
+											pubWindow.framePub.setVisible(true);
+											pubWindow.framePub.setTitle("Publish (" + clientId + ")");
+											
+										}
+									});
+								
+									
+									
 									
 								} catch (Exception e1) {
 									e1.printStackTrace();

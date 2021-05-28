@@ -49,19 +49,19 @@ public class Subscribe {
     	textArea.setText(allTextMessages);
     }
 	
-	public void subscribeBtnPressed(MqttClient clientParameter) {
+	public void subscribeBtnPressed(MqttClient client) {
 
 		subscribeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
-					clientParameter.subscribe(topicTextField.getText());
+					client.subscribe(topicTextField.getText());
 				} catch (MqttException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				
-				clientParameter.setCallback(new MqttCallback() {
+				client.setCallback(new MqttCallback() {
 					
 					@Override
 					public void messageArrived(String topic, MqttMessage message) throws Exception {
@@ -109,8 +109,8 @@ public class Subscribe {
 	}
 	
 	private void initialize() {
-		frameSub = new JFrame("Publish");
-		frameSub.setTitle("Subscribe");
+		frameSub = new JFrame("Subscribe");
+		//frameSub.setTitle("Subscribe");
 		frameSub.setBackground(Color.DARK_GRAY);
 		JPanel panelSubscribe=new JPanel();
 		panelSubscribe.setBackground(Color.DARK_GRAY);
@@ -152,6 +152,7 @@ public class Subscribe {
 		panelSubscribe.add(subscribeButton);
 		
 		textArea = new TextArea("", 1, 20, TextArea.SCROLLBARS_NONE);
+		textArea.setFont(new Font("Courier New", Font.BOLD, 15));
 		textArea.setEditable(false);
 		textArea.setBackground(Color.GRAY);
 		textArea.setBounds(49, 116, 252, 69);

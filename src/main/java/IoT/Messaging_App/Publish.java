@@ -44,7 +44,7 @@ public class Publish {
 		pubBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String topicText = topicTextField.getText();
-				MqttMessage message = new MqttMessage(textPane.getText().getBytes());
+				MqttMessage message = new MqttMessage((clientParameter.getClientId() + ": " + textPane.getText()).getBytes());
 				try {
 					clientParameter.publish(topicText, message);
 				} catch (MqttException e1) {
