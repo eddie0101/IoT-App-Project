@@ -50,7 +50,7 @@ public class App extends GuiApp
 
 			        //JButton connect_button = new JButton("CONNECT");
 					connectButton.addActionListener(new ActionListener() {
-
+	
 			            @Override
 			            public void actionPerformed(ActionEvent e) {
 			            	
@@ -61,7 +61,7 @@ public class App extends GuiApp
 									//Publish publish = new Publish();
 									//publish.frame.setVisible(true);
 									
-
+	
 									String host = textField_Host.getText();
 									String port = textField_Port.getText();
 									broker = "tcp://" + host + ":" + port;
@@ -103,7 +103,7 @@ public class App extends GuiApp
 								}
 			            	}
 			            }
-
+	
 			        });
 					
 					
@@ -113,7 +113,7 @@ public class App extends GuiApp
 				}
 			}
 		});
-
+        
         
         
         while (true) {
@@ -133,7 +133,7 @@ public class App extends GuiApp
             System.out.println("Connected");									printOutputText("Connected");
             
             
-
+    
     		pubWindow.publishBtnPressed(client);
     		
             

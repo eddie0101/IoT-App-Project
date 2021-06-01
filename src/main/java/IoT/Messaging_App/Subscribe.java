@@ -54,6 +54,8 @@ public class Subscribe {
 		subscribeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				printTextMessage("Subscribed to topic " + topicTextField.getText() + ". Listening for messages...");
+				
 				try {
 					client.subscribe(topicTextField.getText());
 				} catch (MqttException e1) {
@@ -141,21 +143,21 @@ public class Subscribe {
 		topicTextField.setColumns(10);
 		
 		messageLabel = new JLabel("Received messages");
-		messageLabel.setBounds(49, 87, 252, 19);
+		messageLabel.setBounds(49, 137, 252, 19);
 		messageLabel.setFont(new Font("Cambria", Font.BOLD, 15));
 		messageLabel.setForeground(Color.LIGHT_GRAY);
 		panelSubscribe.add(messageLabel);
 		
 		subscribeButton = new JButton("subscribe");
-		subscribeButton.setBounds(49, 199, 252, 40);
+		subscribeButton.setBounds(49, 77, 252, 40);
 		subscribeButton.setFont(new Font("Cambria", Font.BOLD, 15));
 		panelSubscribe.add(subscribeButton);
 		
 		textArea = new TextArea("", 1, 20, TextArea.SCROLLBARS_NONE);
-		textArea.setFont(new Font("Courier New", Font.BOLD, 15));
 		textArea.setEditable(false);
+		textArea.setFont(new Font("Courier New", Font.BOLD, 12));
 		textArea.setBackground(Color.GRAY);
-		textArea.setBounds(49, 116, 252, 69);
+		textArea.setBounds(49, 162, 252, 87);
 		panelSubscribe.add(textArea);
 	}
 }
