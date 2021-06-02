@@ -2,6 +2,9 @@ package IoT.Messaging_App;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import java.util.Scanner;
 
 import javax.swing.JButton;
@@ -20,18 +23,16 @@ public class App extends GuiApp
 {
 
 	//static String topic        = "MQTT Examples";
-    static String content      = "Message from NetBeans";
-    static int qos             = 2;
+    //static String content      = "Message from NetBeans";
+    //static int qos             = 2;
     static String broker;//       = "tcp://127.0.0.1:1883";
     static String clientId;//     = "JavaSample2";
     
-    static boolean connectState = false;
-    static String allOutputText = "";
+    static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("(HH:mm:ss - dd/MM/yyyy)");  
+	//LocalDateTime now = LocalDateTime.now(); 
     
-    static void printOutputText(String textLine) {  // printing inside "Output" area
-    	allOutputText =  allOutputText + textLine + '\n';
-    	textArea.setText(allOutputText);
-    }
+    static boolean connectState = false;
+    
     
 	public static void main(String[] args) throws InterruptedException {
         
@@ -67,10 +68,10 @@ public class App extends GuiApp
 									broker = "tcp://" + host + ":" + port;
 									clientId = textField_ClientID.getText();
 									
-									System.out.println("Host: " + host);			printOutputText("Host: " + host);
-									System.out.println("Port: " + port);			printOutputText("Port: " + port);
-									System.out.println("Broker: " + broker); 		printOutputText("Broker: " + broker);
-									System.out.println("ClientID: " + clientId); 	printOutputText("ClientID: " + clientId);
+									System.out.println("Host: " + host);			//printOutputText("Host: " + host);
+									System.out.println("Port: " + port);			//printOutputText("Port: " + port);
+									System.out.println("Broker: " + broker); 		//printOutputText("Broker: " + broker);
+									System.out.println("ClientID: " + clientId); 	//printOutputText("ClientID: " + clientId);
 									connectState = true;
 									
 									subscribeButton.setEnabled(true);
@@ -128,8 +129,9 @@ public class App extends GuiApp
 			MqttClient client = new MqttClient(broker, clientId, persistence);
             MqttConnectOptions connOpts = new MqttConnectOptions();
             connOpts.setCleanSession(true);
-            System.out.println("Connecting to broker: " + broker);				printOutputText("Connecting to broker: "+broker);
+            System.out.println("Connecting to broker: " + broker);				printOutputText("Connecting to broker: " + broker);
             client.connect(connOpts);
+            Thread.sleep(500);
             System.out.println("Connected");									printOutputText("Connected");
             
             
@@ -137,11 +139,11 @@ public class App extends GuiApp
     		pubWindow.publishBtnPressed(client);
     		
             
-            System.out.println("Publishing message: " + content);				printOutputText("Publishing message: " + content);
-            MqttMessage message = new MqttMessage(content.getBytes());
-            message.setQos(qos);
+            //System.out.println("Publishing message: " + content);				printOutputText("Publishing message: " + content);
+            //MqttMessage message = new MqttMessage(content.getBytes());
+            //message.setQos(2); // qos parameter
             //client.publish(topic, message);
-            System.out.println("Message published");							printOutputText("Message published");
+            //System.out.println("Message published");							printOutputText("Message published " + dtf.format(LocalDateTime.now()));
             
             
             subWindow.subscribeBtnPressed(client);

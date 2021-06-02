@@ -24,6 +24,8 @@ import javax.swing.DropMode;
 import java.awt.Color;
 import javax.swing.JTextPane;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionEvent;
 
 public class Publish {
@@ -35,9 +37,15 @@ public class Publish {
 	private JTextField topicTextField;
 	private JLabel messageLabel;
 	
+	
 	public Publish() {
 		initialize();
 	}
+	
+//	private void printOutputText(String textLine) {  // printing inside "Output" area
+//    	allOutputText =  allOutputText + textLine + '\n';
+//    	textArea.setText(allOutputText);
+//  }
 	
 	public void publishBtnPressed(MqttClient clientParameter) {
 		
@@ -47,6 +55,7 @@ public class Publish {
 				MqttMessage message = new MqttMessage((clientParameter.getClientId() + ": " + textPane.getText()).getBytes());
 				try {
 					clientParameter.publish(topicText, message);
+					GuiApp.printOutputText("Message published " + App.dtf.format(LocalDateTime.now()));
 				} catch (MqttException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

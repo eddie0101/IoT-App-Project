@@ -27,6 +27,7 @@ import javax.swing.DropMode;
 import java.awt.Color;
 import javax.swing.JTextPane;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
 import java.awt.event.ActionEvent;
 import java.awt.TextArea;
 
@@ -58,6 +59,7 @@ public class Subscribe {
 				
 				try {
 					client.subscribe(topicTextField.getText());
+					//GuiApp.printOutputText("Message recieved " + App.dtf.format(LocalDateTime.now()));
 				} catch (MqttException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
