@@ -59,9 +59,7 @@ public class Subscribe {
 				
 				try {
 					client.subscribe(topicTextField.getText());
-					//GuiApp.printOutputText("Message recieved " + App.dtf.format(LocalDateTime.now()));
 				} catch (MqttException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				
@@ -69,58 +67,31 @@ public class Subscribe {
 					
 					@Override
 					public void messageArrived(String topic, MqttMessage message) throws Exception {
-						// TODO Auto-generated method stub
 						printTextMessage(message.toString());
 					}
 					
 					@Override
 					public void deliveryComplete(IMqttDeliveryToken token) {
-						// TODO Auto-generated method stub
 						
 					}
 					
 					@Override
 					public void connectionLost(Throwable cause) {
-						// TODO Auto-generated method stub
 						
 					}
 				});
 			}
 		});
-			
-		
-//		client.setCallback(new MqttCallback() {
-//			
-//			@Override
-//			public void messageArrived(String topic, MqttMessage message) throws Exception {
-//				// TODO Auto-generated method stub
-//				System.out.println("topic -> " + topic);
-//				printTextMessage(message.toString());
-//			}
-//			
-//			@Override
-//			public void deliveryComplete(IMqttDeliveryToken token) {
-//				// TODO Auto-generated method stub
-//				
-//			}
-//			
-//			@Override
-//			public void connectionLost(Throwable cause) {
-//				// TODO Auto-generated method stub
-//				
-//			}
-//		});
+
 	}
 	
 	private void initialize() {
 		frameSub = new JFrame("Subscribe");
-		//frameSub.setTitle("Subscribe");
 		frameSub.setBackground(Color.DARK_GRAY);
 		JPanel panelSubscribe=new JPanel();
 		panelSubscribe.setBackground(Color.DARK_GRAY);
 		frameSub.setBounds(100, 100, 350, 300);
 		frameSub.setResizable(false);
-		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frameSub.getContentPane().setLayout(new GridLayout(0, 1, 0, 0));
 		
 		panelSubscribe.setBorder(BorderFactory.createEmptyBorder(30,30, 10, 30));
@@ -128,7 +99,6 @@ public class Subscribe {
 		
 		panelSubscribe.setBorder(BorderFactory.createEmptyBorder(30,30, 10, 30));
 		panelSubscribe.setLayout(null);
-		//panelSubscribe.setLayout(null);
 		
 		topicLabel = new JLabel("Topic");
 		topicLabel.setBounds(49, 10, 252, 19);

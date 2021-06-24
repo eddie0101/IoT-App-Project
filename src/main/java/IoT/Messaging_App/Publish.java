@@ -42,11 +42,6 @@ public class Publish {
 		initialize();
 	}
 	
-//	private void printOutputText(String textLine) {  // printing inside "Output" area
-//    	allOutputText =  allOutputText + textLine + '\n';
-//    	textArea.setText(allOutputText);
-//  }
-	
 	public void publishBtnPressed(MqttClient clientParameter) {
 		
 		pubBtn.addActionListener(new ActionListener() {
@@ -57,7 +52,6 @@ public class Publish {
 					clientParameter.publish(topicText, message);
 					GuiApp.printOutputText("Message published " + App.dtf.format(LocalDateTime.now()));
 				} catch (MqttException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
@@ -72,7 +66,6 @@ public class Publish {
 		panelPublish.setBackground(Color.DARK_GRAY);
 		framePub.setBounds(100, 100, 350, 300);
 		framePub.setResizable(false);
-		//frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		framePub.getContentPane().setLayout(new GridLayout(0, 1, 0, 0));
 		
 		panelPublish.setBorder(BorderFactory.createEmptyBorder(30,30, 10, 30));
@@ -80,7 +73,6 @@ public class Publish {
 		
 		panelPublish.setBorder(BorderFactory.createEmptyBorder(30,30, 10, 30));
 		panelPublish.setLayout(null);
-		//panelPublish.setLayout(null);
 		
 		topicLabel = new JLabel("Topic");
 		topicLabel.setForeground(Color.LIGHT_GRAY);

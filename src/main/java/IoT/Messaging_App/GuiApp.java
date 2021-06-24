@@ -40,12 +40,6 @@ public class GuiApp{
 	static JButton subscribeButton;
 	static JButton publishButton;
 	static String allOutputText = "";
-
-	
-	//public static void main(String[] args) {
-		
-	//}
-
 	
 	public GuiApp() {
 		initialize();
@@ -145,14 +139,10 @@ public class GuiApp{
 		textArea = new TextArea("", 1, 20, TextArea.SCROLLBARS_NONE);
 		textArea.setBounds(40, 142, 288, 192);
 		panel.add(textArea);
-		//textArea.setCursorPosition(textArea.getValue().length());
-		//textArea = new JTextArea("", 1, 20);
-		//textArea.setWrapStyleWord(true);
 		textArea.setEditable(false);
 		textArea.setFont(new Font("Consolas", Font.BOLD, 12));
 		textArea.setForeground(Color.BLACK);
 		textArea.setBackground(Color.GRAY);
-		//caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 		
 		Label label = new Label("Output");
 		label.setBounds(40, 110, 288, 26);

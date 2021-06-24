@@ -22,14 +22,10 @@ import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 public class App extends GuiApp
 {
 
-	//static String topic        = "MQTT Examples";
-    //static String content      = "Message from NetBeans";
-    //static int qos             = 2;
-    static String broker;//       = "tcp://127.0.0.1:1883";
-    static String clientId;//     = "JavaSample2";
+    static String broker;	      // = "tcp://127.0.0.1:1883";
+    static String clientId;
     
-    static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("(HH:mm:ss - dd/MM/yyyy)");  
-	//LocalDateTime now = LocalDateTime.now(); 
+    static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("(HH:mm:ss - dd/MM/yyyy)");
     
     static boolean connectState = false;
     
@@ -47,21 +43,14 @@ public class App extends GuiApp
 					GuiApp appWindow = new GuiApp();
 					appWindow.frame.setVisible(true);
 					
-					//publishWindow.frame.setVisible(true);
-
-			        //JButton connect_button = new JButton("CONNECT");
 					connectButton.addActionListener(new ActionListener() {
 	
 			            @Override
 			            public void actionPerformed(ActionEvent e) {
 			            	
-			            	//Test username & password
 			            	if(true) {
 			            		
 				            	try {
-									//Publish publish = new Publish();
-									//publish.frame.setVisible(true);
-									
 	
 									String host = textField_Host.getText();
 									String port = textField_Port.getText();
@@ -108,7 +97,6 @@ public class App extends GuiApp
 			        });
 					
 					
-					//panel1.add(connect_button);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -129,61 +117,24 @@ public class App extends GuiApp
 			MqttClient client = new MqttClient(broker, clientId, persistence);
             MqttConnectOptions connOpts = new MqttConnectOptions();
             connOpts.setCleanSession(true);
-            System.out.println("Connecting to broker: " + broker);				printOutputText("Connecting to broker: " + broker);
+            printOutputText("Connecting to broker: " + broker);
             client.connect(connOpts);
             Thread.sleep(500);
-            System.out.println("Connected");									printOutputText("Connected");
+            printOutputText("Connected");
             
             
     
     		pubWindow.publishBtnPressed(client);
-    		
-            
-            //System.out.println("Publishing message: " + content);				printOutputText("Publishing message: " + content);
-            //MqttMessage message = new MqttMessage(content.getBytes());
-            //message.setQos(2); // qos parameter
-            //client.publish(topic, message);
-            //System.out.println("Message published");							printOutputText("Message published " + dtf.format(LocalDateTime.now()));
-            
             
             subWindow.subscribeBtnPressed(client);
             
-            
-            //client.subscribe("MQTT Examples");									
-            //System.out.println("Subscribed to MQTT Examples");					printOutputText("Subscribed to MQTT Examples");
-            //client.subscribe("Topic_Test");										
-            //System.out.println("Subscribed to Topic_Test");						printOutputText("Subscribed to Topic_Test");
-            
-            
-            
-            
-//            client.setCallback(new MqttCallback() {
-//				
-//				@Override
-//				public void messageArrived(String topic, MqttMessage message) throws Exception {
-//					// TODO Auto-generated method stub
-//					System.out.println(message.toString());
-//				}
-//				
-//				@Override
-//				public void deliveryComplete(IMqttDeliveryToken token) {
-//					// TODO Auto-generated method stub
-//					
-//				}
-//				
-//				@Override
-//				public void connectionLost(Throwable cause) {
-//					// TODO Auto-generated method stub
-//					
-//				}
-//			});
             
             Thread.sleep(1000000);
             
             
             client.disconnect();
             System.out.println("Disconnected");
-            //System.exit(0);
+            
         } catch(MqttException me) {
             System.out.println("reason "+me.getReasonCode());
             System.out.println("msg "+me.getMessage());
